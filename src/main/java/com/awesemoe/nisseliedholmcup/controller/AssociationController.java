@@ -25,7 +25,7 @@ public class AssociationController {
         return associationService.listAssociations();
     }
 
-    @RequestMapping(value = API_V_1_ASSOCIATION +"/{associationId}", method = RequestMethod.GET)
+    @RequestMapping(value = "{associationId}", method = RequestMethod.GET)
 
     public Association getAssociationId(@PathVariable("associationId") UUID id) {
         log.debug("Get association by id - in controller id");
