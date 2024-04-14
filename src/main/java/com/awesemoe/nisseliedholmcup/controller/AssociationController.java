@@ -41,5 +41,16 @@ public class AssociationController {
         return new ResponseEntity(httpHeaders, HttpStatus.CREATED);
 
     }
+    @PutMapping("{associationId}")
+    public ResponseEntity updateById(@PathVariable("associationId") UUID associationId, @RequestBody Association association) {
+        log.debug("Uppdatera association " + association);
+        associationService.updateAssociationById(associationId,association);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+    public ResponseEntity updatePatchById(@PathVariable("associationId") UUID beerId, @RequestBody  Association association) {
+        log.debug("Uppdatera association through patch  " + association);
+        associationService.patchById(beerId,association);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 
 }

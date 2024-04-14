@@ -3,6 +3,7 @@ package com.awesemoe.nisseliedholmcup.service;
 import com.awesemoe.nisseliedholmcup.model.Association;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -58,6 +59,37 @@ public class AssociationServiceImpl implements AssociationService {
     @Override
     public List<Association> listAssociations() {
         return new ArrayList<>(associationMap.values());
+    }
+
+    @Override
+    public void updateAssociationById(UUID associationId, Association association) {
+        Association existing = associationMap.get(associationId);
+        if (existing != null) {
+            existing.setAssociationName(association.getAssociationName());
+            existing.setCity(association.getCity());
+            existing.setEmail(association.getEmail());
+            existing.setCounty(association.getCounty());
+            associationMap.put(associationId, existing);
+        }
+
+    }
+
+    @Override
+    public void patchById(UUID associationId, Association association) {
+        Association existing = associationMap.get(associationId);
+        if (StringUtils.hasText(existing.getAssociationName())) {
+            existing.setAssociationName(association.getAssociationName());
+        }
+        if (StringUtils.hasText(existing.getCity())) {
+            existing.setCity(association.getCity());
+        }
+        if (StringUtils.hasText(existing.getEmail())) {
+            existing.setEmail(association.getEmail());
+        }
+        if (StringUtils.hasText(existing.getCounty())) {
+            existing.setCounty(association.getCounty());
+
+        }
     }
 
     @Override

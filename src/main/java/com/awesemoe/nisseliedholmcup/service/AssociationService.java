@@ -10,4 +10,8 @@ public interface AssociationService {
     Association saveAssociation(Association association);
 
     List<Association> listAssociations();
+
+    void updateAssociationById(UUID associationId, Association association);
+
+    void patchById(UUID beerId, Association association);
 }
